@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+"https://hibernate.org/dtd/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping package="ua.lviv.lgs.model">
+
+	<class name="Item" table="ITEM">
+		<id name="id" type="long">
+			<column name="item_id" />
+			<generator class="identity" />
+		</id>
+
+		<property name="total" type="double" column="item_total" />
+
+		<set name="carts" table="CART_ITEMS" fetch="select" cascade="all">
+			<key column="item_id" />
+			<many-to-many class="Cart" column="cart_id" />
+		</set>
+
+	</class>
+
+</hibernate-mapping>
